@@ -926,9 +926,52 @@
 
         // 4. RSVP FORM SUBMISSION HANDLER
         function handleFormSubmit(event) {
-            event.preventDefault();
-            alert("Thank you! Your RSVP response has been recorded successfully.");
-            document.getElementById("weddingRsvpForm").reset();
+            event.preventDefault(); // Stop the page from reloading
+            
+            // Grab the Submit button to show a loading state
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "SENDING...";
+            submitBtn.disabled = true;
+
+            // Collect the form input values
+            const nameValue = event.target.querySelector('input[placeholder*="name"]').value;
+            const attendanceValue = event.target.querySelector('input[name="attendance"]:checked').value;
+            const intolerancesValue = event.target.querySelector('input[placeholder*="Vegetarian"]').value;
+
+            // Package the data neatly into a JSON object
+            const formData = {
+                name: nameValue,
+                attendance: attendanceValue,
+                intolerances: intolerancesValue
+            };
+
+            // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+            const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxrgV-vQS9-ljRhS9XsUcTmE3OsCGmuKHyJzO9YZwPt7dfz3FhJkr3vv3NJrHCcRIMaYQ/exec"; 
+
+            // Send the data securely via a POST request
+            fetch(googleAppScriptUrl, {
+                method: 'POST',
+                mode: 'no-cors', // Prevents cross-origin safety errors on static sites
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(() => {
+                // Since we are using 'no-cors', we assume a successful post trigger
+                alert("Thank you! Your RSVP response has been safely recorded.");
+                document.getElementById("weddingRsvpForm").reset();
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert("Oops! There was an issue submitting your RSVP. Please try again.");
+            })
+            .finally(() => {
+                // Reset the button back to normal
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            });
         }
     </script>
 </body>
