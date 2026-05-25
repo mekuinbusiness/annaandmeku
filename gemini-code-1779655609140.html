@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna & Meklit - Save the Date</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+            --bg-cream: #F4F5EA;
+            --primary-burgundy: #7A997F;
+            --primary-burgundy-hover: #5E7B63;
+            --text-dark: #334039;
+            --text-muted: #6E7A6C;
+            --accent-gold: #A7B59D;
+            --card-shadow: 0 10px 30px rgba(79, 94, 77, 0.08);
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --hero-image-height: 360px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- LAYOUT CONTAINER (Optimized for Mobile/App View) --- */
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: var(--bg-cream);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+        }
+
+        /* --- ANIMATION REVEAL ENGINE --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 60px 24px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .monogram-circle {
+            width: 110px;
+            height: 110px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .monogram-circle::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 50%;
+        }
+
+        .monogram {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .couple-names {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 32px;
+            color: var(--accent-gold);
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .hero-verse {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text-dark);
+            line-height: 1.05;
+            margin-bottom: 14px;
+            letter-spacing: -0.03em;
+            font-weight: 400;
+        }
+
+        .hero-reference {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin: 0 auto;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        /* --- MAIN PHOTO DISPLAY --- */
+        .photo-banner {
+            width: 100%;
+            padding: 0 24px;
+            margin-bottom: 40px;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: var(--hero-image-height);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            background-color: #ECEEE5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            background-color: #ECEEE5;
+        }
+
+        /* --- INVITATION CARD BLOCK --- */
+        .invitation-card {
+            padding: 0 24px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .meta-info-grid {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid rgba(167, 181, 157, 0.35);
+            border-bottom: 1px solid rgba(167, 181, 157, 0.35);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+
+        .meta-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .meta-item .value {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .invitation-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .invitation-subtext {
+            font-size: 14px;
+            color: var(--text-muted);
+            padding: 0 20px;
+            font-weight: 300;
+        }
+
+        .map-section {
+            padding: 0 24px 40px;
+            margin-bottom: 40px;
+        }
+
+        .map-frame {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(167, 181, 157, 0.2);
+        }
+
+        .map-iframe {
+            width: 100%;
+            min-height: 260px;
+            border: 0;
+            display: block;
+        }
+
+        /* --- COUNTDOWN TIMER COMPONENT --- */
+        .countdown-section {
+            background-color: #EFF2E5;
+            padding: 40px 24px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .countdown-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+        }
+
+        .timer-grid {
+            display: flex;
+            justify-content: space-between;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        .timer-block {
+            flex: 1;
+            text-align: center;
+        }
+
+        .timer-number {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: var(--text-dark);
+            font-weight: 400;
+            display: block;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .timer-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .timer-separator {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: var(--accent-gold);
+            line-height: 1;
+            padding: 0 4px;
+            opacity: 0.7;
+        }
+
+        .gallery-section {
+            padding: 0 24px 30px;
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .gallery-track-wrapper {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .gallery-track-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-frame {
+            position: relative;
+        }
+
+        .gallery-track-wrapper {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 10px;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 16px;
+            padding: 0 8px;
+        }
+
+        .gallery-card {
+            min-width: 250px;
+            flex: 0 0 auto;
+            height: var(--hero-image-height);
+            scroll-snap-align: center;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            border: 1px solid rgba(167, 181, 157, 0.2);
+            box-shadow: var(--card-shadow);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 20px rgba(79, 94, 77, 0.12);
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .gallery-nav:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .gallery-nav.prev {
+            left: 8px;
+        }
+
+        .gallery-nav.next {
+            right: 8px;
+        }
+
+        @media (max-width: 580px) {
+            .gallery-card {
+                min-width: 220px;
+            }
+
+            .gallery-nav {
+                display: none;
+            }
+        }
+
+        /* --- TIMELINE / AGENDA COMPONENT --- */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 26px;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .timeline-box {
+            position: relative;
+            margin: 0 24px 50px;
+            padding: 30px 24px;
+            border: 1px solid rgba(167, 181, 157, 0.4);
+            border-radius: 16px;
+            background-color: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-time {
+            width: 75px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent-gold);
+            padding-top: 2px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-left: 15px;
+            border-left: 1px solid rgba(167, 181, 157, 0.4);
+        }
+
+        .timeline-event {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .timeline-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .day-program-section .section-title {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .day-program-section .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(122,157,125,1), rgba(122,157,125,0));
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+            transition: transform 0.7s ease;
+        }
+
+        .day-program-section.reveal.active .section-title::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .timeline-box::before {
+            content: '';
+            position: absolute;
+            left: 53px;
+            top: 24px;
+            width: 2px;
+            height: calc(100% - 48px);
+            background: linear-gradient(to bottom, rgba(122,157,125,0.85), rgba(122,157,125,0.12));
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .day-program-section.reveal.active .timeline-box::before {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .day-program-section.reveal.active .timeline-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .day-program-section.reveal.active .timeline-item:nth-child(1) {
+            transition-delay: 0.15s;
+        }
+
+        .day-program-section.reveal.active .timeline-item:nth-child(2) {
+            transition-delay: 0.25s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 46px;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7A997F;
+            box-shadow: 0 0 0 8px rgba(122, 153, 127, 0.12);
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .day-program-section.reveal.active .timeline-item::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* --- ACCORDION Q&A COMPONENT --- */
+        .qa-container {
+            margin: 0 24px 50px;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .accordion-header {
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-question {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-dark);
+            padding-right: 10px;
+        }
+
+        .accordion-icon {
+            font-size: 18px;
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #FAF9F6;
+        }
+
+        .accordion-text {
+            padding: 0 20px 20px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        /* --- RSVP FORM COMPONENT --- */
+        .rsvp-section {
+            margin: 0 24px 40px;
+            padding: 35px 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(79, 94, 77, 0.06);
+            text-align: center;
+        }
+
+        .rsvp-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .rsvp-deadline {
+            font-size: 12px;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid rgba(167, 181, 157, 0.5);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            background: transparent;
+            color: var(--text-dark);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-bottom-color: var(--primary-burgundy);
+        }
+
+        /* Custom Radio/Checkbox Styling */
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-mark {
+            height: 18px;
+            width: 18px;
+            border: 1px solid rgba(167, 181, 157, 0.8);
+            border-radius: 4px;
+            margin-right: 12px;
+            display: inline-block;
+            position: relative;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .radio-option input:checked ~ .custom-mark {
+            background-color: var(--primary-burgundy);
+            border-color: var(--primary-burgundy);
+        }
+
+        .radio-option input:checked ~ .custom-mark::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-burgundy);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 94, 77, 0.16);
+            transition: var(--transition-smooth);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-burgundy-hover);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header class="hero">
+            <div class="monogram-circle reveal">
+                <span class="monogram">A&M</span>
+            </div>
+            <h1 class="couple-names reveal">Anna & Meklit</h1>
+            <p class="hero-verse reveal">Two are better than one</p>
+            <p class="hero-reference reveal">
+                a cord of three strands is not quickly broken.<br>
+                                                   Eccl 4:9–12
+            </p>
+        </header>
+
+        <section class="photo-banner reveal">
+            <div class="image-wrapper">
+                <img src="images/MandA.jpg" alt="Anna and Meklit">
+            </div>
+        </section>
+
+        <section class="invitation-card reveal">
+            <div class="meta-info-grid">
+                <div class="meta-item">
+                    <span class="label">Date</span>
+                    <span class="value">Sept 19, 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Day</span>
+                    <span class="value">Saturday</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Time</span>
+                    <span class="value">11 AM</span>
+                </div>
+            </div>
+            <h2 class="invitation-text">Save the Date</h2>
+            <p class="invitation-subtext">Ebenezer Evangelical Church · Trondheim, Norway</p>
+        </section>
+
+        <section class="countdown-section reveal">
+            <h3 class="countdown-title">The event starts in:</h3>
+            <div class="timer-grid">
+                <div class="timer-block">
+                    <span class="timer-number" id="days">00</span>
+                    <span class="timer-label">Days</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-block">
+                    <span class="timer-number" id="hours">00</span>
+                    <span class="timer-label">Hours</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-block">
+                    <span class="timer-number" id="minutes">00</span>
+                    <span class="timer-label">Mins</span>
+                </div>
+                <div class="timer-separator">:</div>
+                <div class="timer-block">
+                    <span class="timer-number" id="seconds">00</span>
+                    <span class="timer-label">Secs</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section reveal">
+            <div class="gallery-frame">
+                <button class="gallery-nav prev" type="button" aria-label="Previous photo">‹</button>
+                <div class="gallery-track-wrapper" id="galleryWrapper">
+                    <div class="gallery-track">
+                        <div class="gallery-card">
+                            <img src="images/3.jpg" alt="Gallery photo 1">
+                        </div>
+                        <div class="gallery-card">
+                            <img src="images/4.jpg" alt="Gallery photo 2">
+                        </div>
+                        <div class="gallery-card">
+                            <img src="images/5.jpg" alt="Gallery photo 3">
+                        </div>
+                    </div>
+                </div>
+                <button class="gallery-nav next" type="button" aria-label="Next photo">›</button>
+            </div>
+        </section>
+
+        <section class="reveal day-program-section">
+            <h3 class="section-title">Day Program</h3>
+            <div class="timeline-box">
+                <div class="timeline-item">
+                    <div class="timeline-time">11:00 AM</div>
+                    <div class="timeline-content">
+                        <div class="timeline-event">Wedding Ceremony</div>
+                        <div class="timeline-desc">Ebenezer Evangelical Church</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:30 PM</div>
+                    <div class="timeline-content">
+                        <div class="timeline-event">Reception</div>
+                        <div class="timeline-desc">Sjetne bydelshus, Parallellen 18, 7081 Sjetnmarka</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section reveal">
+            <h3 class="section-title">Venue Map</h3>
+            <div class="map-frame">
+                <iframe class="map-iframe" src="https://maps.google.com/maps?q=Parallellen%2018%207081%20Sjetnmarka%20Trondheim%20Norway&z=15&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h3 class="section-title">Questions & Answers</h3>
+            <div class="qa-container">
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-question">Can I bring a plus one?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-text">Due to venue capacity, we can only accommodate those explicitly listed on the invitation. Thank you for understanding!</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-question">Are kids allowed?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-text">To allow all guests a night of relaxation, we have chosen to make our special day adults-only.</div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span class="accordion-question">Will there be transportation?</span>
+                        <span class="accordion-icon">+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-text">Transportation to and from the venue will not be provided. Please allocate 60 minutes for travel if you are staying in the downtown area.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="rsvp-section reveal">
+            <h3 class="rsvp-title">RSVP</h3>
+            <p class="rsvp-deadline">Please confirm before July 21, 2026</p>
+            
+            <form id="weddingRsvpForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="input-field" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Will you attend?</label>
+                    
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="yes" checked>
+                        <span class="custom-mark"></span>
+                        Yes, I will!
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="no">
+                        <span class="custom-mark"></span>
+                        Unfortunately, I cannot
+                    </label>
+
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="later">
+                        <span class="custom-mark"></span>
+                        I will tell you a bit later
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Do you have any food intolerances?</label>
+                    <input type="text" class="input-field" placeholder="e.g., Vegetarian, Nut Allergy, None">
+                </div>
+
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </section>
+
+    </div>
+
+    <script>
+        // 1. COUNTDOWN TIMER ENGINE
+        // Set target date (September 19, 2026 at 11:00:00)
+        const targetDate = new Date("Sep 19, 2026 11:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 2. ACCORDION TOGGLE INTERACTION
+        const headers = document.querySelectorAll(".accordion-header");
+        headers.forEach(header => {
+            header.addEventListener("click", function() {
+                const item = this.parentElement;
+                const content = this.nextElementSibling;
+                
+                if(item.classList.contains("active")) {
+                    content.style.maxHeight = null;
+                    item.classList.remove("active");
+                } else {
+                    // Close other active sections
+                    document.querySelectorAll(".accordion-item").forEach(el => {
+                        el.classList.remove("active");
+                        el.querySelector(".accordion-content").style.maxHeight = null;
+                    });
+                    
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    item.classList.add("active");
+                }
+            });
+        });
+
+        // 3. SCROLL-DRIVEN REVEAL ANIMATIONS
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                // Elements trigger animation when they are 100px from entering the view
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", revealOnScroll);
+        // Initial execution to show elements above the fold on load
+        window.addEventListener("load", revealOnScroll);
+
+        const galleryWrapper = document.getElementById("galleryWrapper");
+        const scrollAmount = 280;
+        document.querySelectorAll(".gallery-nav").forEach(button => {
+            button.addEventListener("click", () => {
+                if (!galleryWrapper) return;
+                const direction = button.classList.contains("next") ? 1 : -1;
+                galleryWrapper.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+            });
+        });
+
+        // 4. RSVP FORM SUBMISSION HANDLER
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert("Thank you! Your RSVP response has been recorded successfully.");
+            document.getElementById("weddingRsvpForm").reset();
+        }
+    </script>
+</body>
+</html>
