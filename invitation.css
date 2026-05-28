@@ -320,7 +320,6 @@ body {
     min-width: min(calc(100vw - 36px), 444px);
     max-width: 444px;
     flex: 0 0 auto;
-    height: var(--hero-image-height);
     scroll-snap-align: start;
     border-radius: 20px;
     overflow: hidden;
@@ -331,10 +330,8 @@ body {
 
 .gallery-card img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
     display: block;
-    background-color: #ECEEE5;
 }
 
 .gallery-nav {
