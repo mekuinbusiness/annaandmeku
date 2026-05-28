@@ -916,6 +916,95 @@ body {
     transform: translateY(-1px);
 }
 
+/* --- GIFT LINK CARD (invitation page) --- */
+.gift-link-section {
+    padding: 0 24px;
+    margin-bottom: 50px;
+}
+
+.gift-link-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: white;
+    border: 1px solid rgba(106, 148, 114, 0.5);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+.gift-link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(79, 94, 77, 0.14);
+}
+
+.gift-link-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-burgundy), var(--primary-burgundy-hover));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.gift-link-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.gift-link-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.gift-link-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--text-dark);
+}
+
+.gift-link-arrow {
+    color: var(--accent-gold);
+    flex-shrink: 0;
+}
+
+/* --- GIFT PAGE HEADER --- */
+.gift-page-header {
+    padding: 50px 24px 10px;
+    text-align: center;
+    position: relative;
+}
+
+.back-link {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.back-link:hover {
+    color: var(--primary-burgundy);
+}
+
 /* --- GIFT SECTION LINK & TABLE STYLES --- */
 .gift-section a {
     text-decoration: none;

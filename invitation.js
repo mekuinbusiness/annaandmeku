@@ -146,6 +146,7 @@ const i18n = {
         'submit-btn': 'SUBMIT',
         'ph-name': 'Enter your full name', 'ph-message': 'Write your message here…',
         'gift-eyebrow': 'Wedding Gift', 'gift-heading': 'Your Gift',
+        'gift-link-label': 'View gift options',
         'gift-message': '<p><strong>Your presence at our wedding is the greatest gift we could receive.</strong></p><p>Should you wish to give a gift, a contribution toward our honeymoon would be sincerely appreciated.</p><p>Thank you for your love, kindness, and for celebrating with us.</p><p><strong>With our heartfelt thanks.</strong></p>',
         'bank-transfer': 'Bank Transfer', 'see-below': '\u2193 see below',
         'iban-label': 'IBAN', 'account-holder': 'Account Holder', 'copy-iban': 'Copy IBAN'
@@ -169,6 +170,7 @@ const i18n = {
         'submit-btn': 'Submit',
         'ph-name': 'ስም', 'ph-message': 'ለሙሽሪት እና ሙሽው መልእክት ካሎት እዚህ ይጻፉ…',
         'gift-eyebrow': 'የሠርግ ስጦታ', 'gift-heading': 'ስጦታ መስጫዎች',
+        'gift-link-label': 'ስጦታ ለሙሽሮች',
         'gift-message': '<p><strong>ትልቁ ስጦታችን በደስታችን መገኘቶ ነው።</strong></p><p>ስጦታ መስጠት ካሰቡ እታች ያሉትን መንገዶች ይጠቀሙ ፡፡ ።</p><p><strong>ከልብ እናመስግናን</strong></p>   ',
         'bank-transfer': 'ለባንክ', 'see-below': '\u2193 ከታች ይመልከቱ',
         'iban-label': 'IBAN', 'account-holder': 'የባለቤቱ ስም', 'copy-iban': 'IBAN '
