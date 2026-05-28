@@ -317,8 +317,8 @@ body {
 }
 
 .gallery-card {
-    min-width: min(calc(100vw - 36px), 444px);
-    max-width: 444px;
+    min-width: min(calc(100vw - 80px), 384px);
+    max-width: 384px;
     flex: 0 0 auto;
     scroll-snap-align: start;
     border-radius: 20px;
