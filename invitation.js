@@ -68,7 +68,7 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 const galleryWrapper = document.getElementById("galleryWrapper");
-const scrollAmount = 280;
+const scrollAmount = galleryWrapper ? galleryWrapper.querySelector('.gallery-card')?.offsetWidth + 12 || 300 : 300;
 document.querySelectorAll(".gallery-nav").forEach(button => {
     button.addEventListener("click", () => {
         if (!galleryWrapper) return;
@@ -88,19 +88,19 @@ function handleFormSubmit(event) {
     submitBtn.disabled = true;
 
     // Collect the form input values
-    const nameValue = event.target.querySelector('input[placeholder*="name"]').value;
+    const nameValue = event.target.querySelector('input[data-i18n-ph="ph-name"]').value;
     const attendanceValue = event.target.querySelector('input[name="attendance"]:checked').value;
-    const intolerancesValue = event.target.querySelector('input[placeholder*="Vegetarian"]').value;
+    const messageValue = event.target.querySelector('textarea').value;
 
     // Package the data neatly into a JSON object
     const formData = {
         name: nameValue,
         attendance: attendanceValue,
-        intolerances: intolerancesValue
+        message: messageValue
     };
 
     // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-    const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbxrgV-vQS9-ljRhS9XsUcTmE3OsCGmuKHyJzO9YZwPt7dfz3FhJkr3vv3NJrHCcRIMaYQ/exec";
+    const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbzb6CXW6Emu7gDft9NuiKJ01wEHWUuA_dAlQ9q9Hpz9Ptd86wDZ5BPuzjJGiLX12USxRQ/exec";
 
     // Send the data securely via a POST request
     fetch(googleAppScriptUrl, {
@@ -130,40 +130,48 @@ function handleFormSubmit(event) {
 // 5. LANGUAGE SWITCHER
 const i18n = {
     en: {
-        'hero-verse': 'Two are better than one',
-        'hero-reference': 'a cord of three strands is not quickly broken.<br>Eccl 4:9\u201312',
-        'label-date': 'Date', 'label-day': 'Day', 'label-time': 'Time',
+        'hero-verse': '“Two are better than one, because they have a good return for their labor. A cord of three strands is not quickly broken.”',
+        'hero-reference': '— Ecclesiastes 4:9–12',        'hero-intro': 'You are joyfully invited to celebrate our wedding',        'label-date': 'Date', 'label-day': 'Day', 'label-time': 'Time',
         'save-the-date': 'Save the Date',
         'church-location': 'Ebenezer Evangelical Church \u00b7 Trondheim, Norway',
         'countdown-title': 'The event starts in:',
         'timer-days': 'Days', 'timer-hours': 'Hours', 'timer-mins': 'Mins', 'timer-secs': 'Secs',
         'day-program': 'Day Program',
-        'ceremony': 'Wedding Ceremony', 'church-desc': 'Ebenezer Evangelical Church', 'reception': 'Reception',
-        'venue-map': 'Venue Map',
+        'ceremony': '⛪ Wedding Ceremony', 'church-desc': 'Ebenezer Evangelical Church', 'reception': '🏛️ Reception',
+        'venue-map': 'Location',
         'rsvp-title': 'RSVP', 'rsvp-deadline': 'Please confirm before July 21, 2026',
         'form-name': 'Your Name', 'form-attend': 'Will you attend?',
         'attend-yes': 'Yes, I will!', 'attend-no': 'Unfortunately, I cannot', 'attend-later': 'I will tell you a bit later',
-        'form-intolerance': 'Do you have any food intolerances?',
+        'form-message': 'Message to the bride & groom',
         'submit-btn': 'SUBMIT',
-        'ph-name': 'Enter your full name', 'ph-intolerance': 'e.g., Vegetarian, Nut Allergy, None'
+        'ph-name': 'Enter your full name', 'ph-message': 'Write your message here…',
+        'gift-eyebrow': 'Wedding Gift', 'gift-heading': 'Your Gift',
+        'gift-message': '<p><strong>Your presence at our wedding is the greatest gift we could receive.</strong></p><p>Should you wish to give a gift, a contribution toward our honeymoon would be sincerely appreciated.</p><p>Thank you for your love, kindness, and for celebrating with us.</p><p><strong>With our heartfelt thanks.</strong></p>',
+        'bank-transfer': 'Bank Transfer', 'see-below': '\u2193 see below',
+        'iban-label': 'IBAN', 'account-holder': 'Account Holder', 'copy-iban': 'Copy IBAN'
     },
     am: {
-        'hero-verse': 'ሁለት ከአንድ ይሻላሉ',
-        'hero-reference': 'የሶስት ክር ገመድ ቶሎ አይበጠስም።<br>መ.ጠ. 4:9\u201312',
+        'hero-verse': '«ሁለት ከአንድ ይሻላሉ፤ ምክንያቱም ድካማቸው መልካም ዋጋ አለው። የሶስት ክር ገመድ ቶሎ አይበጠስም።»',
+        'hero-reference': '— መጽሐፈ መክብብ 4:9–12',        
+        'hero-intro': 'የደስታችን ተካፋይ እንዲሆኑ በደስታ ጠርተነዎታል',        
         'label-date': 'ቀን', 'label-day': 'ዕለት', 'label-time': 'ሰዓት',
-        'save-the-date': 'ቀኑን ያስታውሱ',
+        'save-the-date': 'Save the date',
         'church-location': 'ኤቤነዘር ወንጌላዊ ቤተ ክርስቲያን \u00b7 ትሮንድሃይም፣ ኖርዌይ',
-        'countdown-title': 'ዝግጅቱ የሚጀምርበት ጊዜ:',
+        'countdown-title': 'ለሰርጉ ቀን የቀረው ጊዜ:',
         'timer-days': 'ቀናት', 'timer-hours': 'ሰዓታት', 'timer-mins': 'ደቂቃዎች', 'timer-secs': 'ሴኮንዶች',
-        'day-program': 'የቀን መርሃ ግብር',
-        'ceremony': 'የሠርግ ሥነ ሥርዓት', 'church-desc': 'ኤቤነዘር ወንጌላዊ ቤተ ክርስቲያን', 'reception': 'አቀባበል',
-        'venue-map': 'የቦታ ካርታ',
-        'rsvp-title': 'ምላሽ', 'rsvp-deadline': 'እባክዎ ከጁላይ 21፣ 2026 በፊት ያረጋግጡ',
+        'day-program': 'የቀኑ መርሃ ግብር',
+        'ceremony': '⛪ የቃልኪዳን ሥነ ሥርዓት', 'church-desc': 'ኤቤነዘር ወንጌላዊ ቤተ ክርስቲያን', 'reception': '🏛️ ራት',
+        'venue-map': 'የሠርግ ሥነ ሥርዓት አዳራሽ ቦታ',
+        'rsvp-title': 'መገኘቶትን ያሳውቁ', 'rsvp-deadline': 'እባክዎ ከJuly 21፣ 2026 በፊት ያሳውቁን',
         'form-name': 'ስምዎ', 'form-attend': 'ይሳተፋሉ?',
         'attend-yes': 'አዎ፣ እገኛለሁ!', 'attend-no': 'አዝናለሁ፣ መምጣት አልችልም', 'attend-later': 'ትንሽ ቆይቶ እነግርዎታለሁ',
-        'form-intolerance': 'የምግብ አለርጂ አለዎት?',
-        'submit-btn': 'አስገባ',
-        'ph-name': 'ሙሉ ስምዎን ያስገቡ', 'ph-intolerance': 'ለምሳሌ፡ አትክልተኛ፣ ለውዝ አለርጂ፣ የለም'
+        'form-message': 'ለሙሽሪት እና ሙሽራው መልእክት',
+        'submit-btn': 'Submit',
+        'ph-name': 'ስም', 'ph-message': 'ለሙሽሪት እና ሙሽው መልእክት ካሎት እዚህ ይጻፉ…',
+        'gift-eyebrow': 'የሠርግ ስጦታ', 'gift-heading': 'ስጦታ መስጫዎች',
+        'gift-message': '<p><strong>ትልቁ ስጦታችን በደስታችን መገኘቶ ነው።</strong></p><p>ስጦታ መስጠት ካሰቡ እታች ያሉትን መንገዶች ይጠቀሙ ፡፡ ።</p><p><strong>ከልብ እናመስግናን</strong></p>   ',
+        'bank-transfer': 'ለባንክ', 'see-below': '\u2193 ከታች ይመልከቱ',
+        'iban-label': 'IBAN', 'account-holder': 'የባለቤቱ ስም', 'copy-iban': 'IBAN '
     }
 };
 
@@ -184,3 +192,33 @@ function switchLanguage(lang) {
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => switchLanguage(btn.dataset.lang));
 });
+
+// 6. COPY IBAN TO CLIPBOARD
+function copyIban() {
+    const iban = document.getElementById('ibanValue').innerText;
+    const btn = document.getElementById('copyIbanBtn');
+    const label = btn.querySelector('span');
+    const originalText = label.innerText;
+
+    navigator.clipboard.writeText(iban).then(() => {
+        label.innerText = '\u2713 Copied!';
+        btn.style.background = 'var(--primary-burgundy-hover)';
+        setTimeout(() => {
+            label.innerText = originalText;
+            btn.style.background = '';
+        }, 2200);
+    }).catch(() => {
+        // Fallback for older browsers
+        const el = document.createElement('textarea');
+        el.value = iban;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        label.innerText = '\u2713 Copied!';
+        setTimeout(() => { label.innerText = originalText; }, 2200);
+    });
+}
