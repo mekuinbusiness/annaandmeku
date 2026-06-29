@@ -130,7 +130,7 @@ function handleFormSubmit(event) {
 // 5. LANGUAGE SWITCHER
 const i18n = {
     en: {
-        'hero-verse': '“Two are better than one, because they have a good return for their labor. A cord of three strands is not quickly broken.”',
+        'hero-verse': '"Two are better than one, because they have a good return for their labor. A cord of three strands is not quickly broken."',
         'hero-reference': '— Ecclesiastes 4:9–12',        'hero-intro': 'You are joyfully invited to celebrate our wedding',        'label-date': 'Date', 'label-day': 'Day', 'label-time': 'Time',
         'save-the-date': 'Save the Date',
         'church-location': 'Ebenezer Evangelical Church \u00b7 Trondheim, Norway',
@@ -147,7 +147,7 @@ const i18n = {
         'ph-name': 'Enter your full name', 'ph-message': 'Write your message here…',
         'gift-eyebrow': 'Wedding Gift', 'gift-heading': 'Your Gift',
         'gift-link-label': 'View gift options',
-        'gift-message': '<p><strong>Your presence at our wedding is the greatest gift we could receive.</strong></p><p>Should you wish to give a gift, a contribution toward our honeymoon would be sincerely appreciated.</p><p>Thank you for your love, kindness, and for celebrating with us.</p><p><strong>With our heartfelt thanks.</strong></p>',
+        'gift-message': '<p><strong>Your presence at our wedding is the greatest gift we could receive.</strong></p><p>Should you wish to give a gift, a contribution toward our honeymoon would be sinc[...]
         'bank-transfer': 'Bank Transfer', 'see-below': '\u2193 see below',
         'iban-label': 'IBAN', 'account-holder': 'Account Holder', 'copy-iban': 'Copy IBAN'
     },
@@ -171,7 +171,7 @@ const i18n = {
         'ph-name': 'ስም', 'ph-message': 'ለሙሽሪት እና ሙሽው መልእክት ካሎት እዚህ ይጻፉ…',
         'gift-eyebrow': 'የሠርግ ስጦታ', 'gift-heading': 'ስጦታ መስጫዎች',
         'gift-link-label': 'ስጦታ ለሙሽሮች',
-        'gift-message': '<p><strong>ትልቁ ስጦታችን በደስታችን መገኘቶ ነው።</strong></p><p>ስጦታ መስጠት ካሰቡ እታች ያሉትን መንገዶች ይጠቀሙ ፡፡ ።</p><p><strong>ከልብ እናመስግናን</strong></p>   ',
+        'gift-message': '<p><strong>ትልቁ ስጦታችን በደስታችን መገኘቶ ነው።</strong></p><p>ስጦታ መስጠት ካሰቡ እታች ያሉትን መንገዶች ይጠቀ[...]
         'bank-transfer': 'ለባንክ', 'see-below': '\u2193 ከታች ይመልከቱ',
         'iban-label': 'IBAN', 'account-holder': 'የባለቤቱ ስም', 'copy-iban': 'IBAN '
     }
@@ -195,7 +195,16 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => switchLanguage(btn.dataset.lang));
 });
 
-// 6. COPY IBAN TO CLIPBOARD
+// 6. GIFT LINK CLICK HANDLER - POPUP MESSAGE
+const giftLinkCard = document.querySelector('.gift-link-card');
+if (giftLinkCard) {
+    giftLinkCard.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("Gift links will be available on the wedding date (September 19, 2026)");
+    });
+}
+
+// 7. COPY IBAN TO CLIPBOARD
 function copyIban() {
     const iban = document.getElementById('ibanValue').innerText;
     const btn = document.getElementById('copyIbanBtn');
